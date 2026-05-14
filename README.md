@@ -78,6 +78,17 @@ Done in 3.76s • Files: 1 • Missing found: 12 • Filled: 12 • Total cost: 
 python manage.py compilemessages
 ```
 
+## django-modeltranslation support
+
+If you use [django-modeltranslation](https://github.com/deschler/django-modeltranslation) for dynamic model fields, install the optional extra and run the new command:
+
+```bash
+pip install "yesglot[modeltranslation]"
+python manage.py translatemodels --models blog.Post shop.Product --languages fr de --source-language en
+```
+
+The command will detect registered modeltranslation fields, translate only the models you list, fill missing values, and save them back to the database.
+
 ## Advantage Usage
 
 Optional parameters,

@@ -31,6 +31,9 @@ dependencies = [
 Homepage = "https://github.com/efe/yesglot"
 Issues = "https://github.com/efe/yesglot/issues"
 
+[project.optional-dependencies]
+modeltranslation = ["django-modeltranslation>=0.19"]
+
 [tool.hatch.build]
 include = ["yesglot/**", "README.md", "LICENSE"]
 packages = ["yesglot"]
