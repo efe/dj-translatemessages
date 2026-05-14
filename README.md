@@ -1,12 +1,15 @@
-# dj-translatemessages (formerly yesglot) 
+# dj-translatemessages
 
-[![](https://img.shields.io/pypi/v/yesglot)](https://pypi.org/project/yesglot) [![](https://img.shields.io/codecov/c/github/efe/yesglot)](https://app.codecov.io/github/efe/yesglot) [![](https://img.shields.io/github/check-runs/efe/yesglot/main)](https://github.com/efe/yesglot/actions?query=branch%3Amain) [![](https://img.shields.io/github/license/efe/yesglot)](https://github.com/efe/yesglot/blob/main/LICENSE) ![](https://img.shields.io/pypi/frameworkversions/django/yesglot)
+[![](https://img.shields.io/pypi/v/dj-translatemessages)](https://pypi.org/project/dj-translatemessages) [![](https://img.shields.io/codecov/c/github/efe/dj-translatemessages)](https://app.codecov.io/github/efe/dj-translatemessages) [![](https://img.shields.io/github/check-runs/efe/dj-translatemessages/main)](https://github.com/efe/dj-translatemessages/actions?query=branch%3Amain) [![](https://img.shields.io/github/license/efe/dj-translatemessages)](https://github.com/efe/dj-translatemessages/blob/main/LICENSE) ![](https://img.shields.io/pypi/frameworkversions/django/dj-translatemessages)
 
 > LLM-powered Django translations ✨
+> Formerly published as `yesglot`.
 
 A Django app that autofills missing translations in `.po` files using an LLM, while respecting [ICU](https://unicode-org.github.io/icu/) format placeholders and source references.
 
-## Why yesglot?
+Project story: [The birth of yesglot.com](https://efe.me/posts/2026-05-14-the-birth-of-yesglot-com/) explains the background behind `yesglot` and the rename to `dj-translatemessages`.
+
+## Why dj-translatemessages?
 
 - 🧠 LLM-powered: works with [100+ LLM models](https://models.litellm.ai/) through LiteLLM’s unified API
 - 🔒 Placeholder-safe: keeps {name}, {{handlebars}}, URLs, and emails intact
@@ -18,16 +21,20 @@ A Django app that autofills missing translations in `.po` files using an LLM, wh
 
 ### Installation
 
-```python
-pip install yesglot
+```bash
+pip install dj-translatemessages
 ```
 
-Add yesglot to your Django settings:
+Version `2.0.0` renames the Django app to `dj_translatemessages`.
+If you're upgrading from `yesglot`, update `INSTALLED_APPS` and imports accordingly.
+Migration steps: [docs/migration_guideline.md](docs/migration_guideline.md).
+
+Add `dj_translatemessages` to your Django settings:
 
 ```python
 INSTALLED_APPS = [
     # ...
-    "yesglot",
+    "dj_translatemessages",
 ]
 ```
 
@@ -36,8 +43,8 @@ INSTALLED_APPS = [
 Set the model from [100+ LLM models](https://models.litellm.ai/) and API key in your Django settings:
 
 ```python
-YESGLOT_LLM_MODEL = "openai/gpt-4o-mini"
-YESGLOT_API_KEY = "sk-..."
+DJ_TRANSLATEMESSAGES_LLM_MODEL = "openai/gpt-4o-mini"
+DJ_TRANSLATEMESSAGES_API_KEY = "sk-..."
 ```
 
 
@@ -51,7 +58,7 @@ A typical workflow with Django translations:
 python manage.py makemessages -all
 ```
 
-2. Autofill missing translations with *yesglot*:
+2. Autofill missing translations with `dj-translatemessages`:
 
 ```
 python manage.py translatemessages
@@ -78,20 +85,20 @@ Done in 3.76s • Files: 1 • Missing found: 12 • Filled: 12 • Total cost: 
 python manage.py compilemessages
 ```
 
-## Advantage Usage
+## Advanced Usage
 
 Optional parameters,
 
-- `YESGLOT_SAFETY_MARGIN`: 1000 (default)
-- `YESGLOT_PER_ITEM_OUTPUT`: 100 (default)
-- `YESGLOT_LLM_MODEL_TEMPERATURE`: 0 (default)
+- `DJ_TRANSLATEMESSAGES_SAFETY_MARGIN`: 1000 (default)
+- `DJ_TRANSLATEMESSAGES_PER_ITEM_OUTPUT`: 100 (default)
+- `DJ_TRANSLATEMESSAGES_LLM_MODEL_TEMPERATURE`: 0 (default)
 
 ### System Prompt
 
 It is preconfigured, though you may override it to tailor the behavior of your translation.
 
-- `SYSTEM_PROMPT_FUNCTION`: for example, `"myproject.myapp.utils.get_system_prompt"`
-- `SYSTEM_PROMPT`: string
+- `DJ_TRANSLATEMESSAGES_SYSTEM_PROMPT_FUNCTION`: for example, `"myproject.myapp.utils.get_system_prompt"`
+- `DJ_TRANSLATEMESSAGES_SYSTEM_PROMPT`: string
 
 Default:
 
@@ -105,8 +112,8 @@ Default:
 
 It’s already configured, but you can override it to adjust how your translation behaves.
 
-- `PREAMBLE_TEMPLATE_FUNCTION`: for example, `"myproject.myapp.utils.get_preamble"`
-- `PREAMBLE_TEMPLATE`: string
+- `DJ_TRANSLATEMESSAGES_PREAMBLE_TEMPLATE_FUNCTION`: for example, `"myproject.myapp.utils.get_preamble"`
+- `DJ_TRANSLATEMESSAGES_PREAMBLE_TEMPLATE`: string
 
 Default:
 
@@ -116,4 +123,4 @@ Default:
 
 Mozilla Public License Version 2.0
 
-![Yesglot Logo](assets/logo.png)
+![dj-translatemessages Logo](assets/logo.png)

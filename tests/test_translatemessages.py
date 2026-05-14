@@ -12,7 +12,7 @@ my_vcr = vcr.VCR(
     decode_compressed_response=True,
 )
 
-class YesglotCommandTests(SimpleTestCase):
+class DjTranslateMessagesCommandTests(SimpleTestCase):
     def setUp(self):
         self.locale_root = Path(settings.LOCALE_PATHS[0]).resolve()
         self.po_file = self.locale_root / "tr" / "LC_MESSAGES" / "django.po"

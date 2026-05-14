@@ -4,8 +4,8 @@ import logging
 import tiktoken
 from litellm import completion, completion_cost, get_max_tokens
 
-from yesglot.prompts import get_system_prompt, get_preamble_template
-from yesglot.settings import yesglot_settings
+from dj_translatemessages.prompts import get_system_prompt, get_preamble_template
+from dj_translatemessages.settings import dj_translatemessages_settings
 
 logging.getLogger("LiteLLM").setLevel(logging.ERROR)
 
@@ -41,13 +41,15 @@ def make_batches(items, target_language, model):
         items_tokens = count_tokens(items_json, encoder)
 
         # Estimated output tokens
-        est_output_tokens = yesglot_settings.PER_ITEM_OUTPUT * len(candidate)
+        est_output_tokens = dj_translatemessages_settings.PER_ITEM_OUTPUT * len(candidate)
 
         # Total estimated tokens
         total_tokens = system_tokens + preamble_tokens + items_tokens + est_output_tokens
 
-        max_context_tokens = get_max_tokens(yesglot_settings.LLM_MODEL)
-        if current and total_tokens >= (max_context_tokens - yesglot_settings.SAFETY_MARGIN):
+        max_context_tokens = get_max_tokens(dj_translatemessages_settings.LLM_MODEL)
+        if current and total_tokens >= (
+            max_context_tokens - dj_translatemessages_settings.SAFETY_MARGIN
+        ):
             batches.append(current)
             current = [item]
         else:
@@ -67,8 +69,8 @@ def translate_batch(batch, target_language, model):
             {"role": "system", "content": get_system_prompt()},
             {"role": "user", "content": user_prompt},
         ],
-        temperature=yesglot_settings.LLM_MODEL_TEMPERATURE,
-        api_key=yesglot_settings.API_KEY,
+        temperature=dj_translatemessages_settings.LLM_MODEL_TEMPERATURE,
+        api_key=dj_translatemessages_settings.API_KEY,
     )
     cost = completion_cost(completion_response=response)
 
@@ -76,7 +78,7 @@ def translate_batch(batch, target_language, model):
     return json.loads(content), cost
 
 
-def translate_items(items, target_language, model=yesglot_settings.LLM_MODEL):
+def translate_items(items, target_language, model=dj_translatemessages_settings.LLM_MODEL):
     results = []
     total_cost = 0
     for batch in make_batches(items, target_language, model):
