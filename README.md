@@ -1,4 +1,4 @@
-# yesglot
+# dj-translatemessages (formerly yesglot) 
 
 [![](https://img.shields.io/pypi/v/yesglot)](https://pypi.org/project/yesglot) [![](https://img.shields.io/codecov/c/github/efe/yesglot)](https://app.codecov.io/github/efe/yesglot) [![](https://img.shields.io/github/check-runs/efe/yesglot/main)](https://github.com/efe/yesglot/actions?query=branch%3Amain) [![](https://img.shields.io/github/license/efe/yesglot)](https://github.com/efe/yesglot/blob/main/LICENSE) ![](https://img.shields.io/pypi/frameworkversions/django/yesglot)
 
