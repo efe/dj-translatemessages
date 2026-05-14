@@ -1,0 +1,2 @@
+class DjTranslateMessagesException(Exception):
+    pass

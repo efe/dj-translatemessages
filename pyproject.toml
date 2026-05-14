@@ -3,8 +3,8 @@ requires = ["hatchling>=1.18"]
 build-backend = "hatchling.build"
 
 [project]
-name = "yesglot"
-version = "1.0.0"
+name = "dj-translatemessages"
+version = "2.0.0"
 description = "Django app for seamless AI-assisted translation of .po files."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -28,9 +28,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/efe/yesglot"
-Issues = "https://github.com/efe/yesglot/issues"
+Homepage = "https://github.com/efe/dj-translatemessages"
+Issues = "https://github.com/efe/dj-translatemessages/issues"
 
 [tool.hatch.build]
-include = ["yesglot/**", "README.md", "LICENSE"]
-packages = ["yesglot"]
+include = ["dj_translatemessages/**", "README.md", "LICENSE"]
+packages = ["dj_translatemessages"]

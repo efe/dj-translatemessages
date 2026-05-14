@@ -8,7 +8,7 @@ USE_I18N = True
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.auth",
-    "yesglot",
+    "dj_translatemessages",
 ]
 
 DATABASES = {
@@ -38,8 +38,8 @@ LANGUAGES = [
 # Locale path will be overridden to a tmp dir per test
 LOCALE_PATHS = [str(BASE_DIR / "locale")]
 
-YESGLOT_LLM_MODEL = "openai/gpt-4o-mini"
-YESGLOT_API_KEY = "sk-proj-test"
-YESGLOT_SAFETY_MARGIN = 1000
-YESGLOT_PER_ITEM_OUTPUT = 100
-YESGLOT_LLM_MODEL_TEMPERATURE = 0
+DJ_TRANSLATEMESSAGES_LLM_MODEL = "openai/gpt-4o-mini"
+DJ_TRANSLATEMESSAGES_API_KEY = "sk-proj-test"
+DJ_TRANSLATEMESSAGES_SAFETY_MARGIN = 1000
+DJ_TRANSLATEMESSAGES_PER_ITEM_OUTPUT = 100
+DJ_TRANSLATEMESSAGES_LLM_MODEL_TEMPERATURE = 0
